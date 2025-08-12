@@ -15,26 +15,26 @@ graph TB
         B[Platform Services]
         C[ArgoCD]
     end
-    
+
     subgraph "PlatformNorthStar Applications"
         D[Environment Configs]
         E[Application Definitions]
         F[Service Configurations]
         G[Workload Policies]
     end
-    
+
     C --> D
     D --> E
     E --> F
     F --> G
-    
+
     subgraph "Application Workloads"
         H[Web Services]
         I[APIs]
         J[Databases]
         K[Background Jobs]
     end
-    
+
     G --> H
     G --> I
     G --> J
@@ -103,24 +103,28 @@ Development → Staging → Production
 ## Application Categories
 
 ### Web Services
+
 - Frontend applications
 - Static websites
 - Single-page applications (SPAs)
 - Progressive web apps (PWAs)
 
 ### APIs
+
 - REST APIs
 - GraphQL services
 - Microservices
 - Service meshes
 
 ### Databases
+
 - PostgreSQL clusters
 - Redis instances
 - ClickHouse analytics
 - Vector databases
 
 ### Background Jobs
+
 - Scheduled tasks
 - Event processors
 - Data pipelines
@@ -129,12 +133,14 @@ Development → Staging → Production
 ## Configuration Management
 
 ### Hierarchical Configuration
+
 1. **Global Defaults**: Base configurations for all applications
 2. **Environment Overrides**: Environment-specific settings
 3. **Application Overrides**: Application-specific configurations
 4. **Instance Overrides**: Individual instance customizations
 
 ### Configuration Sources
+
 - **YAML Files**: Primary configuration format
 - **Helm Values**: Template-based configurations
 - **ConfigMaps**: Runtime configurations
@@ -143,38 +149,46 @@ Development → Staging → Production
 ## Deployment Patterns
 
 ### Blue-Green Deployments
+
 Zero-downtime deployments with instant rollback capability.
 
 ### Canary Deployments
+
 Gradual rollout with traffic splitting and automatic rollback.
 
 ### Rolling Updates
+
 Sequential pod replacement with health checks.
 
 ### Feature Flags
+
 Runtime feature toggles without deployments.
 
 ## Monitoring and Observability
 
 ### Application Metrics
+
 - Business metrics and KPIs
 - Technical performance metrics
 - Custom application metrics
 - SLA/SLO tracking
 
 ### Distributed Tracing
+
 - Request flow tracking
 - Performance bottleneck identification
 - Cross-service dependency mapping
 - Error correlation
 
 ### Logging
+
 - Structured application logs
 - Centralized log aggregation
 - Log-based alerting
 - Audit trails
 
 ### Alerting
+
 - Application-specific alerts
 - SLA breach notifications
 - Anomaly detection
@@ -183,18 +197,21 @@ Runtime feature toggles without deployments.
 ## Security Model
 
 ### Application Security
+
 - Container image scanning
 - Runtime security policies
 - Secret management
 - Network micro-segmentation
 
 ### Access Control
+
 - Role-based access control (RBAC)
 - Service-to-service authentication
 - API key management
 - OAuth/OIDC integration
 
 ### Compliance
+
 - Data privacy regulations
 - Security auditing
 - Policy enforcement
@@ -203,6 +220,7 @@ Runtime feature toggles without deployments.
 ## Development Workflow
 
 ### Local Development
+
 ```bash
 # Clone the repository
 git clone https://github.com/binGhzal/PlatformNorthStar.git
@@ -219,6 +237,7 @@ helm dependency update charts/app-template/
 ```
 
 ### Application Deployment
+
 ```bash
 # Deploy to development
 ./scripts/deploy.sh --application my-app --environment dev
@@ -231,6 +250,7 @@ helm dependency update charts/app-template/
 ```
 
 ### Configuration Updates
+
 ```bash
 # Update application configuration
 ./scripts/config.sh --application my-app --set image.tag=v1.2.3
@@ -242,21 +262,27 @@ helm dependency update charts/app-template/
 ## Integration with InfraFlux
 
 ### Platform Readiness
+
 PlatformNorthStar waits for InfraFlux to signal platform readiness:
+
 - Kubernetes cluster operational
 - Platform services healthy
 - ArgoCD configured and running
 - Network policies in place
 
 ### Resource Consumption
+
 Applications consume platform resources:
+
 - **Compute**: CPU and memory from worker nodes
 - **Storage**: Persistent volumes from storage classes
 - **Network**: Load balancers and ingress controllers
 - **Security**: Certificate managers and secret stores
 
 ### Monitoring Integration
+
 Applications integrate with platform monitoring:
+
 - **Metrics**: Prometheus scraping and aggregation
 - **Logs**: Centralized logging infrastructure
 - **Traces**: Distributed tracing collection
@@ -265,24 +291,29 @@ Applications integrate with platform monitoring:
 ## Getting Started
 
 ### Prerequisites
+
 - Access to InfraFlux-managed Kubernetes cluster
 - kubectl configured for cluster access
 - Helm 3.x installed
 - ArgoCD CLI (optional)
 
 ### Quick Start
+
 1. **Clone Repository**
+
    ```bash
    git clone https://github.com/binGhzal/PlatformNorthStar.git
    cd PlatformNorthStar
    ```
 
 2. **Deploy Sample Application**
+
    ```bash
    ./scripts/deploy.sh --application sample-app --environment dev
    ```
 
 3. **Check Deployment Status**
+
    ```bash
    kubectl get applications -n argocd
    argocd app list
@@ -296,6 +327,7 @@ Applications integrate with platform monitoring:
 ### Adding New Applications
 
 1. **Create Application Definition**
+
    ```bash
    ./scripts/new-app.sh --name my-new-app --type web-service
    ```
@@ -304,15 +336,17 @@ Applications integrate with platform monitoring:
    Edit the generated files in `applications/my-new-app/`
 
 3. **Deploy to Development**
+
    ```bash
    ./scripts/deploy.sh --application my-new-app --environment dev
    ```
 
 4. **Test and Promote**
+
    ```bash
    # Test in development
    ./scripts/test.sh --application my-new-app --environment dev
-   
+
    # Promote to staging
    ./scripts/promote.sh --application my-new-app --from dev --to staging
    ```
@@ -320,24 +354,28 @@ Applications integrate with platform monitoring:
 ## Best Practices
 
 ### Configuration Management
+
 - Use environment-specific value files
 - Keep secrets separate from configurations
 - Version all configuration changes
 - Validate configurations before deployment
 
 ### Resource Management
+
 - Set appropriate resource requests and limits
 - Use horizontal pod autoscaling (HPA)
 - Monitor resource utilization
 - Implement cost optimization
 
 ### Security
+
 - Follow least privilege principles
 - Regularly update container images
 - Scan for vulnerabilities
 - Audit access and permissions
 
 ### Monitoring
+
 - Implement comprehensive health checks
 - Monitor business and technical metrics
 - Set up proactive alerting

@@ -8,7 +8,7 @@ domain: dev.platform.local
 app:
   name: sample-web-app
   version: "latest"
-  
+
 # Image configuration
 image:
   repository: nginx
